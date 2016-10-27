@@ -1,7 +1,7 @@
 FROM centos:6.7
 RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
-     echo "name=Resilio Sync $basearch" >> /etc/yum.repos.d/resilio-sync.repo; \
-     echo "baseurl=http://linux-packages.resilio.com/resilio-sync/rpm/$basearch" >> /etc/yum.repos.d/resilio-sync.repo; \
+     echo "name=Resilio Sync \$basearch" >> /etc/yum.repos.d/resilio-sync.repo; \
+     echo "baseurl=http://linux-packages.resilio.com/resilio-sync/rpm/\$basearch" >> /etc/yum.repos.d/resilio-sync.repo; \
      echo "enabled=1" >> /etc/yum.repos.d/resilio-sync.repo; \  
      echo "gpgcheck=1" >> /etc/yum.repos.d/resilio-sync.repo; \
      mkdir -p /root/.config/transmission-daemon/; \

@@ -78,6 +78,4 @@ RUN (mkdir -p /root/.ssh/; \
      echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
 RUN echo "root:toor" | chpasswd
 EXPOSE 22 9091 31003
-RUN (/usr/bin/rslsync --webui.listen 0.0.0.0:31003; \
-     transmission-daemon)
-CMD service crond start; /usr/sbin/sshd -D
+CMD service crond start; /usr/sbin/sshd -D; /usr/bin/rslsync --webui.listen 0.0.0.0:31003;  transmission-daemon

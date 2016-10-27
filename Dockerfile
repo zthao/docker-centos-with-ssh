@@ -63,7 +63,8 @@ RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
      echo "}" >> /root/.config/transmission-daemon/settings.json; \
      rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc)
 RUN yum update -y glibc-common
-RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax resilio-sync transmission transmission-daemon
+RUN (yum install -y sudo passwd openssh-server openssh-clients tar screen crontabs strace telnet perl libpcap bc patch ntp dnsmasq unzip pax resilio-sync transmission transmission-daemon; \
+     yum clean all)
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN (rpm -Uvh https://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm; \
      yum install -y puppet puppet-server puppetserver facter hiera lsyncd sshpass rng-tools)

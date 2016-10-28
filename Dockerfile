@@ -76,8 +76,22 @@ RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
      echo "    \"umask\": 18," >> /root/.config/transmission-daemon/settings.json; \
      echo "    \"upload-slots-per-torrent\": 14" >> /root/.config/transmission-daemon/settings.json; \
      echo "}" >> /root/.config/transmission-daemon/settings.json; \
-     rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc)
-RUN (yum install -y resilio-sync transmission transmission-daemon; \
-     /usr/bin/rslsync --webui.listen 0.0.0.0:31003)
+     rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc; \
+     yum install -y resilio-sync transmission transmission-daemon; \
+     echo "{" > /usr/bin/sync.conf; \
+     echo "  \"device_name\": \"My Sync Device\"," >> /usr/bin/sync.conf; \
+     echo "  \"storage_path\" : \"/root/.sync\"," >> /usr/bin/sync.conf; \
+     echo "  \"use_upnp\" : true," >> /usr/bin/sync.conf; \
+     echo "  \"download_limit\" : 0," >> /usr/bin/sync.conf; \
+     echo "  \"upload_limit\" : 0," >> /usr/bin/sync.conf; \
+     echo "  \"directory_root\" : \"/root/\"," >> /usr/bin/sync.conf; \
+     echo "  \"webui\" :" >> /usr/bin/sync.conf; \
+     echo "  {" >> /usr/bin/sync.conf; \
+     echo "    \"listen\" : \"0.0.0.0:8888\"" >> /usr/bin/sync.conf; \
+     echo "    ,\"login\" : \"q\"" >> /usr/bin/sync.conf; \
+     echo "    ,\"password\" : \"q\"" >> /usr/bin/sync.conf; \
+     echo "  }" >> /usr/bin/sync.conf; \
+     echo "}" >> /usr/bin/sync.conf; \
+     /usr/bin/rslsync --config /usr/bin/sync.conf)
 EXPOSE 22 9091 31003
-CMD service crond start;/usr/sbin/sshd -D;transmission-daemon
+CMD service crond start;/usr/sbin/sshd -D;service transmission-daemon start;service resilio-sync start 

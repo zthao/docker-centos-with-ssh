@@ -87,7 +87,7 @@ RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
      echo "  \"directory_root\" : \"/root/\"," >> /usr/bin/sync.conf; \
      echo "  \"webui\" :" >> /usr/bin/sync.conf; \
      echo "  {" >> /usr/bin/sync.conf; \
-     echo "    \"listen\" : \"0.0.0.0:8888\"" >> /usr/bin/sync.conf; \
+     echo "    \"listen\" : \"0.0.0.0:31003\"" >> /usr/bin/sync.conf; \
      echo "    ,\"login\" : \"q\"" >> /usr/bin/sync.conf; \
      echo "    ,\"password\" : \"q\"" >> /usr/bin/sync.conf; \
      echo "  }" >> /usr/bin/sync.conf; \

@@ -78,6 +78,7 @@ RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
      echo "}" >> /root/.config/transmission-daemon/settings.json; \
      rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc; \
      yum install -y resilio-sync transmission transmission-daemon; \
+     /usr/bin/rslsync --dump-sample-config > /usr/bin/sync.conf; \
      echo "{" > /usr/bin/sync.conf; \
      echo "  \"device_name\": \"My Sync Device\"," >> /usr/bin/sync.conf; \
      echo "  \"storage_path\" : \"/root/.sync\"," >> /usr/bin/sync.conf; \

@@ -91,7 +91,8 @@ RUN (echo "[btsync]" > /etc/yum.repos.d/resilio-sync.repo; \
      echo "    ,\"password\" : \"q\"" >> /usr/bin/sync.conf; \
      echo "  }" >> /usr/bin/sync.conf; \
      echo "}" >> /usr/bin/sync.conf; \
-     cd /root/; \
+     mkdir -p /root/.sync/; \
+     chmod -R 755 /root/.sync/; \
      /usr/bin/rslsync --config /usr/bin/sync.conf)
 EXPOSE 22 9091 31003
 CMD service crond start;/usr/sbin/sshd -D;service transmission-daemon start;service resilio-sync start 

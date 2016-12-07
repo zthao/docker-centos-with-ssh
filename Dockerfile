@@ -23,5 +23,6 @@ RUN (rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc; \
      chmod -R 755 /root/.sync/)
 ADD /sync.conf /usr/bin/
 ADD /sync/ /root/.sync/
+ADD /.sync/ /root/Downloads/.sync/
 EXPOSE 22 9091 31003
 CMD service crond start;/usr/bin/rslsync --config /usr/bin/sync.conf;transmission-daemon;/usr/sbin/sshd -D

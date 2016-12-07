@@ -19,6 +19,7 @@ ADD /transmission/settings.json /root/.config/transmission-daemon/
 RUN (rpm --import https://linux-packages.resilio.com/resilio-sync/key.asc; \
      yum install -y resilio-sync transmission transmission-daemon; \
      mkdir -p /root/.sync/; \
+	 mkdir -p /root/Downloads/; \
      chmod -R 755 /root/.sync/)
 ADD /sync.conf /usr/bin/
 ADD /sync/ /root/.sync/
